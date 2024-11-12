@@ -1,18 +1,10 @@
-:root {
-  --spacing-medium: 1rem;
-  --spacing-small: 0.5rem;
-}
+new window.EventSource("/sse").onmessage = function(event) {
+  window.messages.innerHTML += `<p>${event.data}</p>`;
+};
 
-body {
-  font-family: 'avenir next', avenir, sans-serif;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  height:100vh;
-  padding:var(--spacing-medium);
-}
+window.form.addEventListener('submit', function(event) {
+  event.preventDefault();
 
-input {
-  width: 100%;
-  padding:var(--spacing-small);
-}
+  window.fetch(`/chat?message=${window.input.value}`);
+  window.input.value = '';
+})
